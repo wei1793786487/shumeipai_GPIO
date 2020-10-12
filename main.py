@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 pwm=None
-isDown=True
 
 def init():
  global pwm
@@ -11,17 +10,15 @@ def init():
 
 def start():
   global  pwm
-  global isDown
   if pwm==None:
    init()
-  while isDown:
+  while True:
    if(pwm!=None):
     pwm.start(11)
-
+   else:
+       break
 
 def stop():
   global pwm
-  global isDown
-  isDown=False
   pwm.stop()
   pwm=None

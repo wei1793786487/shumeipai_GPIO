@@ -1,21 +1,12 @@
 from flask import Flask
+from flask import request
 import main
-import threading
 app = Flask(__name__)
 
-
-@app.route('/start')
-def start():
-    print("start")
-    main.start()
-    return '开始旋转'
-
-
-@app.route('/stop')
-def stop():
-    print("触发停止")
-    main.stop()
-    return '结束旋转'
+@app.route('/start/<int:post_id>')
+def start(post_id):
+    main.doit(post_id)
+    return '发送旋转指令成功，旋转时间'+str(post_id)+'秒'
 
 
 
